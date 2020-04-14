@@ -39,13 +39,13 @@ df = pd.DataFrame.from_dict(train_data)
 print(df.keys())
 for feature in df.keys():
     plt.title(feature)
-    plt.ylabel('count')
+    plt.ylabel('normalized count')
     plt.xlabel(feature)
     pos = [val for i, val in enumerate(df[feature]) if df['requester_received_pizza'][i]]
     neg = [val for i, val in enumerate(df[feature]) if not df['requester_received_pizza'][i]]
     if df[feature].dtype in ('int64', 'float64'):
         plt.hist([pos, neg], density=True, label=['positive', 'negative'])
         plt.legend()
-        plt.show()
-
-
+        #plt.show()
+        plt.savefig('histograms/'+feature+'.png')
+        plt.clf()
